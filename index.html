@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let gameFinished = false
+        let computerChoice
+        let userChoice
+        let userScore = 0
+        let computerScore = 0
+        console.log(`computer score: ${computerScore}`)
+        function computerMakesChoice() {
+            let choiceIndex = parseInt(Math.random() * 3)
+            switch (choiceIndex){
+                case 0:
+                    choiceIndex = 'rock'
+                    break;
+                case 1:
+                    choiceIndex = 'paper'
+                    break;
+                case 2:
+                    choiceIndex = 'scissors'
+                    break;
+            }
+            return choiceIndex
+        }
+        
+        function userMakesChoice() {
+            let userChoice = prompt('pick rock, paper, or scissors')
+            return userChoice
+        }
+
+        function playRound(computerChoice, userChoice) {
+            let winner = undefined
+            if (userChoice === 'rock') {
+                if(computerChoice === 'paper') {
+                    alert('you lose')
+                    winner = 'computer'
+                } else if (computerChoice === 'rock') {
+                    alert('tie')
+                } else if (computerChoice === 'scissors') {
+                    alert('you win')
+                    winner = 'user'
+                }
+            } else if (userChoice === 'paper') {
+                if(computerChoice === 'paper') {
+                    alert('you tie')
+                } else if (computerChoice === 'rock') {
+                    alert('you win')
+                    winner = 'user'
+                } else if (computerChoice === 'scissors') {
+                    alert('you lose')
+                    winner = 'computer'
+                }
+            }else if (userChoice === 'scissors') {
+                if(computerChoice === 'paper') {
+                    alert('you win')
+                    winner = 'user'
+                } else if (computerChoice === 'rock') {
+                    alert('you lose')
+                    winner = 'computer'
+                } else if (computerChoice === 'scissors') {
+                    alert('you tie')
+                }
+            } else {
+                alert('bad entry')
+            }
+            return winner
+        }
+
+        function checkGameState() {
+            if (computerScore >= 2) {
+                alert('computer wins')
+                gameFinished = true
+            } else if(userScore >= 2) {
+                alert('user wins')
+                gameFinished = true
+            }
+        }
+
+        function recordRoundResult(result) {
+            if (result === 'user') {
+                userScore++
+            }else if (result === 'computer') {
+                computerScore++
+            }
+            alert(`current game score: \nComputer:${computerScore}\nUser:${userScore}`)
+        }
+        do{
+            computerChoice = computerMakesChoice()
+            userChoice = userMakesChoice() 
+            roundResult = playRound(computerChoice, userChoice)
+            recordRoundResult(roundResult)
+            checkGameState()
+        }while (!gameFinished)
+        
+        
+        
+
+        
+    </script>
+
+    <!-- 
+get the computer's choice
+get the user's choice
+if the user picks rock:
+    if the computer picks  paper, user loses
+    if the computer picks rock, tie
+    if the computer picks scissors, user wins
+if the user picks paper:
+    if the computer picks  scissors, user loses
+    if the computer picks paper, tie
+    if the computer picks rock, user wins
+if the user picks scissors:
+    if the computer picks  paper, user loses
+    if the computer picks scissors, tie
+    if the computer picks rock, user wins
+    -->
+
+    
+</body>
+</html>
