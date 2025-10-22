@@ -3,106 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Rock, Paper, Scissors</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <script>
-        let gameFinished = false
-        let computerChoice
-        let userChoice
-        let userScore = 0
-        let computerScore = 0
-        console.log(`computer score: ${computerScore}`)
-        function computerMakesChoice() {
-            let choiceIndex = parseInt(Math.random() * 3)
-            switch (choiceIndex){
-                case 0:
-                    choiceIndex = 'rock'
-                    break;
-                case 1:
-                    choiceIndex = 'paper'
-                    break;
-                case 2:
-                    choiceIndex = 'scissors'
-                    break;
-            }
-            return choiceIndex
-        }
-        
-        function userMakesChoice() {
-            let userChoice = prompt('pick rock, paper, or scissors')
-            return userChoice
-        }
-
-        function playRound(computerChoice, userChoice) {
-            let winner = undefined
-            if (userChoice === 'rock') {
-                if(computerChoice === 'paper') {
-                    alert('you lose')
-                    winner = 'computer'
-                } else if (computerChoice === 'rock') {
-                    alert('tie')
-                } else if (computerChoice === 'scissors') {
-                    alert('you win')
-                    winner = 'user'
-                }
-            } else if (userChoice === 'paper') {
-                if(computerChoice === 'paper') {
-                    alert('you tie')
-                } else if (computerChoice === 'rock') {
-                    alert('you win')
-                    winner = 'user'
-                } else if (computerChoice === 'scissors') {
-                    alert('you lose')
-                    winner = 'computer'
-                }
-            }else if (userChoice === 'scissors') {
-                if(computerChoice === 'paper') {
-                    alert('you win')
-                    winner = 'user'
-                } else if (computerChoice === 'rock') {
-                    alert('you lose')
-                    winner = 'computer'
-                } else if (computerChoice === 'scissors') {
-                    alert('you tie')
-                }
-            } else {
-                alert('bad entry')
-            }
-            return winner
-        }
-
-        function checkGameState() {
-            if (computerScore >= 2) {
-                alert('computer wins')
-                gameFinished = true
-            } else if(userScore >= 2) {
-                alert('user wins')
-                gameFinished = true
-            }
-        }
-
-        function recordRoundResult(result) {
-            if (result === 'user') {
-                userScore++
-            }else if (result === 'computer') {
-                computerScore++
-            }
-            alert(`current game score: \nComputer:${computerScore}\nUser:${userScore}`)
-        }
-        do{
-            computerChoice = computerMakesChoice()
-            userChoice = userMakesChoice() 
-            roundResult = playRound(computerChoice, userChoice)
-            recordRoundResult(roundResult)
-            checkGameState()
-        }while (!gameFinished)
-        
-        
-        
-        // added comment
-        
-    </script>
-    
+    <div class="main-container">
+        <h1>Rock, Paper, Scissors</h1>
+        <h2>A fun game of chance... or is it skill?</h2>
+        <div class="game-container">
+            <div class="score-container">
+                <h3>First to 3 wins!</h3>
+                <div class="score-player">
+                    <h4>Player score: 1</h4>
+                </div>
+                <div class="score-computer">
+                    <h4>Computer score: 4</h4>
+                </div>
+            </div>
+            <div class="choices-container">
+                <h3>Computer Choices</h3>
+                <div class="computer-choices-container">
+                    <button class="option-rock" disabled>
+                        <img src="images/img-rock.png" alt="">
+                    </button>
+                    <button class="option-paper" disabled>
+                        <img src="images/img-paper.png" alt="">
+                    </button>
+                    <button class="option-scissors" disabled>
+                        <img src="images/img-scissors.png" alt="">
+                    </button>
+                </div>
+                <h3>Player Choices</h3>
+                <div class="player-choices-container">
+                    <button class="option-rock">
+                        <img src="images/img-rock.png" alt="">
+                    </button>
+                    <button class="option-paper">
+                        <img src="images/img-paper.png" alt="">
+                    </button>
+                    <button class="option-scissors">
+                        <img src="images/img-scissors.png" alt="">
+                    </button>
+                </div>
+            </div>
+            <div class="reset-container">
+                <button class="reset">
+                    <img src="images/reset.png" alt="">
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
